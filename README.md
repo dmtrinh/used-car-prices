@@ -67,9 +67,11 @@ Leaving aside `log_price` which has obvious and direct correlation to `price`, w
 ## Building the Regression Models
 The dataset was divided into two sets: 75% train and 25% test split.  We employed this ML pipeline:
 <img src="./images/11_Pipeline.png" width="500" />
+
 Since features are in different scales, we rain a handful of features through the StandardScaler.  RidgeCV was used due to its built-in cross validation.
 
 After fitting, we have:
+
 <img src="./images/12_Coef_importance.png" width="600" />
 
 <img src="./images/13_Actual_vs_Predicted.png" width="600" />
@@ -79,6 +81,6 @@ Our analysis suggests:
 * A clean title will contribute positively to a car's price
 * Cars consuming diesel fuel and/or having a non-standard transmission may also command higher prices.  The limited availability of cars with these features (i.e. small number of samples in our dataset) might have led to elevated prices.
 * Electric cars seem to be falling out of favor given the large negative coefficient.
-* Older cars and/or ones with higher mileage tend to sell for cheaper.
+* Older cars and/or ones with higher mileage tend to sell for less.
 
 To maximize revenue, car dealerships should focus on obtaining inventory of newer, lower mileage vehicles with clean titles.
