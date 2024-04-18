@@ -15,7 +15,7 @@ We will use the CRISP-DM framework to guide our approach.
 
 ## Business Understanding
 
-From a business perspective, we are tasked with identifying key drivers for used car prices.  We will employ an essemble of techniques to determine feature importance and enable predictive modeling:
+From a business perspective, we are tasked with identifying key drivers for used car prices.  We will employ a collection of techniques to determine feature importance and support building of a predictive model for used car sale prices.
 * Exploratory data analysis (EDA) to understand distribution of each feature and also their relationship to price
 * Data preparation activities to filter out missing data, impute missing values, and engineer new features that may be useful.
 * Build a model to help predict sales prices based on various features of a car
@@ -23,7 +23,7 @@ From a business perspective, we are tasked with identifying key drivers for used
 ## Exploratory Data Analysis
 We immediately noticed the substantial missing values and non-numerical features.
 
-<img src="./images/00_Dataframe_info.png" width="200" />
+<img src="./images/00_Dataframe_info.png" width="300" />
 <img src="./images/01_Initial_percent_missing_values.png" width="200" />
 
 `price` and `odometer` features have very large ranges, suggesting some of the values may not be legitimate.
@@ -62,3 +62,6 @@ Correlation matrix of the cleaned dataset:
 Leaving aside `log_price` which has obvious and direct correlation to `price`, we can observe that both `odometer` and `age` have fairly strong negative correlation to `price`.  This logically makes sense since older and higher mileage vehicles typically are not worth as much.
 
 ## Building the Regression Models
+<img src="./images/11_Pipeline.png" width="500" />
+
+<img src="./images/12_Coef_importance.png" width="600" />
