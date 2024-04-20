@@ -18,10 +18,10 @@ We will use the CRISP-DM framework to guide our approach.
 From a business perspective, we are tasked with identifying key drivers for used car prices.  We will employ a collection of techniques to determine feature importance and support building of a predictive model for used car sale prices:
 * Exploratory data analysis (EDA) to understand distribution of each feature and also their relationship to price
 * Data preparation activities to filter out missing data, impute missing values, and engineer new features that may be useful.
-* Build a model to help predict sales prices based on various features of a car
+* Linear regression with regularization to build a model to predict sales prices based on various features of a car
 
 ## Exploratory Data Analysis
-Upon initial examination of the dataset, we immediately noticed majority of features are non-numerical.  Furthermore, some features have substantial amounts of missing values.
+Upon initial examination of the dataset, we immediately noticed a majority of features is non-numerical.  Furthermore, some features have substantial amounts of missing values.
 
 <img src="./images/00_Dataframe_info.png" width="300" />
 <img src="./images/01_Initial_percent_missing_values.png" width="200" />
@@ -35,7 +35,7 @@ Notice the long tail for distribution of prices.
 <img src="./images/04_Distribution_of_prices.png" width="400" />
 
 ## Data Preparation and Feature Engineering
-An extensive amount of preparation work needed to be done on the data to get the data into a usable state for machine learning:
+An extensive amount of preparation work was needed to get the data into a usable state for machine learning:
 * Given the high percentage of missing values for `VIN` (>37%) and `size` (>70%), these columns were dropped.
 * The features [`year`, `model`, `fuel`, `odometer`, `transmission`] all had <1.5% missing values.  The _rows_ with missing values in these were dropped.
 * Imputed missing values for `manufacturer` based on text in `model`; e.g. 'Scion' and 'Genesis'.
@@ -68,13 +68,15 @@ Leaving aside `log_price` which has obvious and direct correlation to `price`, w
 The dataset was divided into two sets: 75% train and 25% test split.  We employed this ML pipeline:
 <img src="./images/11_Pipeline.png" width="500" />
 
-Since features are in different scales, we rain a handful of features through the StandardScaler.  RidgeCV was used due to its built-in cross validation.
+Since features are in different scales, we ran a handful of features through the StandardScaler.  To retain all features for prediction, Ridge regression was intentionally chosen.  Implementation-wise, we used RidgeCV for its built-in cross validation.
 
 After fitting, we have:
 
 <img src="./images/12_Coef_importance.png" width="600" />
 
 <img src="./images/13_Actual_vs_Predicted.png" width="600" />
+
+Mean absolute error (MAE) is easier for customers to understand so we used that metric for measuring our model performance.  Our model performed very well with less than a 1% difference for MAE between our training set and test set.
 
 ## Findings and Recommendations
 Our analysis suggests:
